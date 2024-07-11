@@ -8,7 +8,7 @@ export class AppModule {
 
   configure(app: Application) {
     for (let module of this.modules) {
-      module.configureRoutes(app);
+      module.configure(app);
     }
   }
 }

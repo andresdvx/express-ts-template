@@ -14,7 +14,7 @@ export class UserModule {
     this.userController = new UserController(this.userService);
   }
 
-  configureRoutes(app: Application) {
+  configure(app: Application) {
     this.prismaService
       .$connect()
       .then(() => console.log("db conectada"))
