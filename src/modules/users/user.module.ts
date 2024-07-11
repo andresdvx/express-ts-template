@@ -19,7 +19,6 @@ export class UserModule {
       .$connect()
       .then(() => console.log("db conectada"))
       .catch((error) => console.log(error));
-
     this.userController.configureRoutes(app);
   }
 }

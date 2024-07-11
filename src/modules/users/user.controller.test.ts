@@ -1,7 +1,6 @@
 import express, { Application } from "express";
 import superTest from "supertest";
 import { AppModule } from "../../app.module";
-import { User } from "@prisma/client";
 
 describe("user controller", () => {
   let app: Application;
@@ -21,14 +20,15 @@ describe("user controller", () => {
       .expect("Content-Type", /json/)
       .expect(200)
       .then(async (response) => {
-        expect(Array.isArray(response.body)).toBeTruthy();
+        const data = response.body;
+        expect(Array.isArray(data)).toBeTruthy();
       });
   });
 
   it("/create should create an return an user", async () => {
     const data = {
-      name: "andres",
-      email: "andres@mail.com",
+      name: "loxo",
+      email: "loxura@mail.com",
     };
     await superTest(app)
       .post("/api/users/create")
@@ -40,6 +40,21 @@ describe("user controller", () => {
         expect(user).toHaveProperty("id");
         expect(user).toHaveProperty("name");
         expect(user).toHaveProperty("email");
+      });
+  });
+
+  it("/signIn should return null if user does not exists", async () => {
+    const data = {
+      email: "notExists@mail.com",
+      name: "notexists",
+    };
+    return await superTest(app)
+      .get("/api/users/signIn")
+      .send(data)
+      .expect(200)
+      .then(async (response) => {
+        const data = response.body;
+        expect(data).toBeNull();
       });
   });
 });
