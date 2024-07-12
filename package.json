@@ -4,7 +4,7 @@
     "dev": "nodemon",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/app.js",
-    "test": "jest",
+    "test": "jest --verbose",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage"
   },

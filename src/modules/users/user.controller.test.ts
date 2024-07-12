@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import superTest from "supertest";
+import { getRandomUser, RandomUser } from "../../common/utils/getRandomUser";
 import { AppModule } from "../../app.module";
 
 describe("user controller", () => {
@@ -26,10 +27,12 @@ describe("user controller", () => {
   });
 
   it("/create should create an return an user", async () => {
+    const { name, email }: RandomUser = await getRandomUser();
     const data = {
-      name: "loxo",
-      email: "loxura@mail.com",
+      name,
+      email,
     };
+
     await superTest(app)
       .post("/api/users/create")
       .send(data)
@@ -48,6 +51,7 @@ describe("user controller", () => {
       email: "notExists@mail.com",
       name: "notexists",
     };
+
     return await superTest(app)
       .get("/api/users/signIn")
       .send(data)
