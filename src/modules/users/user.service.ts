@@ -4,11 +4,11 @@ import { User } from "@prisma/client";
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  async getAll(): Promise<User[]> {
+  async getAllUsers(): Promise<User[]> {
     return await this.prisma.user.findMany();
   }
 
-  async create(data: User): Promise<User> {
+  async createUser(data: User): Promise<User> {
     return await this.prisma.user.create({
       data: data,
     });
@@ -24,6 +24,14 @@ export class UserService {
         id: true,
         email: true,
         name: true,
+      },
+    });
+  }
+
+  async deleteUser(userId: number) {
+    return await this.prisma.user.delete({
+      where: {
+        id: userId,
       },
     });
   }
