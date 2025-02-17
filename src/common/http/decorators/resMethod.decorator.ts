@@ -2,7 +2,7 @@ import { Response } from "express";
 import { ResponseHandler } from "../response.handler";
 import { ErrorHandler } from "../error.handler";
 
-export function HandleResponse() {
+export function ResMethod() {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
