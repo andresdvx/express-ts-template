@@ -1,5 +1,5 @@
 import { Application } from "express";
-import { UserModule } from "./modules/users/test.module";
+import { UserModule } from "./modules/test/test.module";
 
 export class AppModule {
   private modules = [new UserModule()];
