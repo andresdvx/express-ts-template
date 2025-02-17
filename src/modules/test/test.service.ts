@@ -1,4 +1,4 @@
-import {NotFoundError} from "../../common/http/errors/httpErrors";
+import {NotFoundError} from 'express-zen'
 
 export class TestService {
   constructor() {}

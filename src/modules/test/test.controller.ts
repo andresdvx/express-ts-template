@@ -1,6 +1,6 @@
 import { Application, Request, Response } from "express";
 import { TestService } from "./test.service";
-import { ResMethod } from "../../common/http/decorators/resMethod.decorator";
+import { ResMethod } from "express-zen";
 
 export class TestController {
   constructor(private testService: TestService) {}
@@ -11,7 +11,7 @@ export class TestController {
 
   @ResMethod()
   async test(req: Request, res: Response) {
-    const trin = await this.testService.test();
+    const trin = this.testService.test();
     return trin;
   }
 }
