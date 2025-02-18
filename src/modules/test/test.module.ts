@@ -12,6 +12,6 @@ export class UserModule {
   }
 
   configure(app: Application) {
-    this.testController.configureRoutes(app);
+    this.testController.Router(app);
   }
 }
